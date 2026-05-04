@@ -228,11 +228,11 @@ const database = {
 };
 
 // Cấu trúc lặp để bạn test (Tự động nhân bản cho đủ số lượng nếu thiếu)
-for(let cat in database) {
-    while(database[cat].length < 50) {
-        database[cat].push({...database[cat][0], q: database[cat][0].q + " (Câu hỏi giả lập cho đủ 50)"});
-    }
-}
+//for(let cat in database) {
+   // while(database[cat].length < 50) {
+   //     database[cat].push({...database[cat][0], q: database[cat][0].q + " (Câu hỏi giả lập cho đủ 50)"});
+   // }
+//}
 
 let currentCat = '';
 let currentIdx = 0;
