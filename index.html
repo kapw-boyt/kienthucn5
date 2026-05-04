@@ -251,13 +251,24 @@ function startQuiz(cat) {
 
 function renderQuestion() {
     answered = false;
-    const data = database[currentCat][currentIdx];
-    document.getElementById('progress-text').innerText = `Câu ${currentIdx + 1}/${database[currentCat].length}`;
+    const currentList = database[currentCat];
+    const totalInCat = currentList.length; 
+    
+    // Nếu làm hết câu hỏi thực tế thì dừng lại và hiện kết quả
+    if (currentIdx >= totalInCat) {
+        showResult();
+        return;
+    }
+
+    const data = currentList[currentIdx];
+    
+    // Tự động cập nhật tiến độ theo số câu thực tế (Ví dụ: 1/24 thay vì 1/50)
+    document.getElementById('progress-text').innerText = `Câu ${currentIdx + 1}/${totalInCat}`;
     document.getElementById('score-text').innerText = `Đúng: ${score}`;
+    
     document.getElementById('q-text').innerText = data.q;
     document.getElementById('explanation').style.display = 'none';
     document.getElementById('next-btn').style.display = 'none';
-    document.getElementById('exit-btn').style.display = 'block';
 
     const optionsDiv = document.getElementById('options');
     optionsDiv.innerHTML = '';
